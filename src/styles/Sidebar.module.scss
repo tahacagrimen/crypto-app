@@ -4,9 +4,10 @@
   min-height: 100vh;
   width: 15%;
   background-color: #f3f3f3;
-  visibility: visible;
+  position: sticky;
+  top: 0;
   @include breakpoint(mediumBP) {
-    visibility: hidden;
+    display: none;
   }
   padding: 1em;
 

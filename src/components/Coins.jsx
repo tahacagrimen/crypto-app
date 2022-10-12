@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import CoinContext from "../contexts/coinContext";
 import Coin from "./Coin";
 import styles from "../styles/Coins.module.scss";
+import { HiOutlineSearch, HiMenuAlt3 } from "react-icons/hi";
 
 const Coins = () => {
   const { page, setPage, perPage, currency, setPerPage, setCurrency } =
@@ -38,9 +39,17 @@ const Coins = () => {
   return (
     <div className={styles.container}>
       <div className={styles.container__search}>
-        <input type="text" />
+        <div className={styles.search1}>
+          <input type="text" placeholder="Search coins..." />
+          <HiOutlineSearch />
+        </div>
+        <div className={styles.search2}>
+          <HiMenuAlt3 />
+        </div>
       </div>
+      <div className={styles.container__hr}></div>
       <div className={styles.container__coins}>
+        <h1>Live Market</h1>
         {data.map((coin) => (
           <Coin coin={coin} />
         ))}
