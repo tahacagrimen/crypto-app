@@ -3,6 +3,7 @@ import styles from "../styles/Loginpage.module.scss";
 import FirebaseContext from "../contexts/firebaseContext";
 import Login from "./misc/Login";
 import Register from "./misc/Register";
+import { useNavigate } from "react-router-dom";
 
 const Loginpage = () => {
   const {
@@ -13,6 +14,8 @@ const Loginpage = () => {
     handleCreateUserWithEmail,
     handleSignInWithGoogle,
   } = useContext(FirebaseContext);
+
+  let navigate = useNavigate();
 
   const [isLogin, setLogin] = useState(true);
 
@@ -239,7 +242,12 @@ const Loginpage = () => {
           </button>
         </div>
         {isLogin ? <Login /> : <Register />}
-        <h1 className={styles.withoutlogin}>Continue without login</h1>
+        <h1
+          onClick={() => navigate("/overview")}
+          className={styles.withoutlogin}
+        >
+          Continue without login
+        </h1>
       </div>
     </div>
   );
