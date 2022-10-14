@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/Loginpage.module.scss";
 import FirebaseContext from "../contexts/firebaseContext";
+import Login from "./misc/Login";
+import Register from "./misc/Register";
 
 const Loginpage = () => {
   const {
@@ -11,6 +13,8 @@ const Loginpage = () => {
     handleSignInWithEmail,
     handleSignInWithGoogle,
   } = useContext(FirebaseContext);
+
+  const [isLogin, setLogin] = useState(true);
 
   return (
     <div className={styles.container}>
@@ -216,28 +220,12 @@ const Loginpage = () => {
         <div className={styles.logo}>
           <h1>Crypto Portfolio</h1>
         </div>
-        <div className={styles.google}>
-          <button onClick={() => handleSignInWithGoogle()}>
-            Sign In With Google
-          </button>
+        <div className={styles.select}>
+          <button onClick={() => setLogin(true)}>Login</button>
+          <button onClick={() => setLogin(false)}>Sign In</button>
         </div>
-        <div className={styles.emailsign}>
-          <h1>Email</h1>
-          <input
-            type="text"
-            placeholder="Enter your email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <h1>Password</h1>
-          <input
-            type="text"
-            placeholder="Enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button onClick={() => handleSignInWithEmail()}>
-            Sign In With Email
-          </button>
-        </div>
+        {isLogin ? <Login /> : <Register />}
+        <h1>Countinue without login</h1>
       </div>
     </div>
   );

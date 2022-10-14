@@ -186,6 +186,24 @@
         }
       }
     }
+
+    .select {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+      button {
+        width: 50%;
+        height: auto;
+        font-weight: 500;
+        &:hover {
+          background-color: rgba(110, 36, 36, 0.1);
+          color: rgb(114, 89, 89);
+        }
+      }
+    }
+
     .google {
       width: 100%;
       margin: 1rem 0;
