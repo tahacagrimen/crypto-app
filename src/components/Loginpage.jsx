@@ -221,8 +221,22 @@ const Loginpage = () => {
           <h1>Crypto Portfolio</h1>
         </div>
         <div className={styles.select}>
-          <button onClick={() => setLogin(true)}>Login</button>
-          <button onClick={() => setLogin(false)}>Sign In</button>
+          <button
+            className={
+              isLogin ? styles["loginbtn--selected"] : styles["loginbtn"]
+            }
+            onClick={() => setLogin(true)}
+          >
+            Login
+          </button>
+          <button
+            className={
+              !isLogin ? styles["signinbtn--selected"] : styles["signinbtn"]
+            }
+            onClick={() => setLogin(false)}
+          >
+            Sign Up
+          </button>
         </div>
         {isLogin ? <Login /> : <Register />}
         <h1 className={styles.withoutlogin}>Continue without login</h1>

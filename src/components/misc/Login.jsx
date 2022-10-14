@@ -16,7 +16,7 @@ function Login() {
     <>
       <div className={styles.google}>
         <button onClick={() => handleSignInWithGoogle()}>
-          Sign In with Google
+          Login with Google
         </button>
       </div>
       <div className={styles.emailsign}>

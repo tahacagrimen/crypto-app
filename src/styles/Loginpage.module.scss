@@ -197,9 +197,17 @@
         width: 50%;
         height: auto;
         font-weight: 500;
+      }
+      .signinbtn,
+      .loginbtn {
+        &--selected {
+          text-decoration: underline;
+          transform: scale(1.1);
+          font-weight: 600;
+        }
         &:hover {
-          background-color: rgba(110, 36, 36, 0.1);
-          color: rgb(114, 89, 89);
+          transition: all 1sn;
+          transform: scale(1.1);
         }
       }
     }
