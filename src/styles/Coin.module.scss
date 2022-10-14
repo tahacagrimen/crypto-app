@@ -20,6 +20,9 @@
     img {
       width: 1.8rem;
       border-radius: 100%;
+      @include breakpoint(mediumBP) {
+        width: 1.5rem;
+      }
     }
   }
   &__start {
@@ -32,12 +35,18 @@
       h3 {
         font-size: 16px;
         font-weight: 600;
+        @include breakpoint(mediumBP) {
+          font-size: 14px;
+        }
       }
 
       h5 {
         font-size: 14px;
         font-weight: 400;
         color: #9e9e9e;
+        @include breakpoint(mediumBP) {
+          font-size: 12px;
+        }
       }
     }
   }
@@ -55,6 +64,9 @@
     flex-direction: column;
     width: 5rem;
     margin-right: 1rem;
+    @include breakpoint(mediumBP) {
+      margin-right: 0.2rem;
+    }
 
     h3 {
       font-size: 12px;
@@ -102,7 +114,7 @@
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    width: 6rem;
+    width: 7rem;
 
     h3 {
       font-size: 12px;

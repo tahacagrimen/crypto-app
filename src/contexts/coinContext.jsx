@@ -10,9 +10,20 @@ export function CoinProvider({ children }) {
 
   const [currency, setCurrency] = useState("usd");
 
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <CoinContext.Provider
-      value={{ page, setPage, perPage, setPerPage, currency, setCurrency }}
+      value={{
+        page,
+        setPage,
+        perPage,
+        setPerPage,
+        currency,
+        setCurrency,
+        isSidebarOpen,
+        setSidebarOpen,
+      }}
     >
       {children}
     </CoinContext.Provider>

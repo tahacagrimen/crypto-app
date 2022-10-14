@@ -2,19 +2,33 @@ import React from "react";
 import Profile from "./Profile";
 import styles from "../styles/Sidebar.module.scss";
 import { BiLogOut } from "react-icons/bi";
-import { useState } from "react";
+import { HiOutlineX } from "react-icons/hi";
+import { BsWallet2 } from "react-icons/bs";
+import { FaThList } from "react-icons/fa";
+import { useState, useContext } from "react";
+import CoinContext from "../contexts/coinContext";
 
 const Sidebar = () => {
-  const [isActive, setActive] = useState(false);
+  const { isSidebarOpen, setSidebarOpen } = useContext(CoinContext);
 
-  const toggleClass = () => {
-    setActive(!isActive);
-  };
-
-  console.log(isActive);
+  console.log(isSidebarOpen);
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        isSidebarOpen ? styles["container--open"] : styles["container--close"]
+      } `}
+    >
+      <div
+        className={`${styles.container__x} ${
+          isSidebarOpen
+            ? styles["container__x--open"]
+            : styles["container__x--close"]
+        } `}
+        onClick={() => setSidebarOpen(false)}
+      >
+        <HiOutlineX onClick={() => setSidebarOpen(false)} />
+      </div>
       <div className={styles.container__logo}>
         <img
           className={styles.container__image}
@@ -23,18 +37,19 @@ const Sidebar = () => {
         />
         <h2>Crypto</h2>
       </div>
-      <div>
+      <div className={styles.menu}>
         <Profile />
-        <div>Overview</div>
-        <div>My Portfolio</div>
+        <div className={styles.menu__overview}>
+          <FaThList className={styles.icon} />
+          <h3>Overview</h3>
+        </div>
+        <div className={styles.menu__portfolio}>
+          <BsWallet2 className={styles.icon} />
+          <h3>My Portfolio</h3>
+        </div>
       </div>
-      <div
-        onClick={toggleClass}
-        className={
-          isActive ? "styles.buttons__logout__active" : "styles.buttons__logout"
-        }
-      >
-        <BiLogOut />
+      <div className={styles.menu__logout}>
+        <BiLogOut className={styles.icon} />
         <h3>Logout</h3>
       </div>
     </div>

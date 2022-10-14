@@ -1,11 +1,2 @@
 @import "./variables.scss";
 @import "./globals.scss";
-
-.app {
-  min-height: 100vh;
-  min-width: 100vw;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: relative;
-}

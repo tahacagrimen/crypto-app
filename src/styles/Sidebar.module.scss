@@ -2,14 +2,55 @@
 
 .container {
   min-height: 100vh;
-  width: 15%;
   background-color: #f3f3f3;
   position: sticky;
   top: 0;
+  padding: 1em;
   @include breakpoint(mediumBP) {
     display: none;
   }
-  padding: 1em;
+  &--open {
+    z-index: 999;
+    display: block;
+    min-width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 3rem;
+  }
+  &--close {
+    min-width: 15%;
+    max-width: 20%;
+  }
+
+  &__x {
+    border: 2px solid black;
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0.2rem;
+    z-index: 1000;
+    cursor: pointer;
+
+    &:hover {
+      color: crimson;
+      border: 2px solid crimson;
+      transform: scale(1.1);
+    }
+
+    &--open {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+    &--close {
+      display: none;
+    }
+  }
 
   &__logo {
     width: 100%;
@@ -30,6 +71,39 @@
 
   &__image {
     width: 25%;
+  }
+}
+
+.menu {
+  &__overview,
+  &__portfolio,
+  &__logout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1rem 0;
+    cursor: pointer;
+    &:hover {
+      h3,
+      .icon {
+        color: #6154f0;
+        transform: scale(1.1);
+        transition: all 0.2s;
+      }
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #9e9e9e;
+    }
+
+    h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 1rem;
+      color: #9e9e9e;
+    }
   }
 }
 
