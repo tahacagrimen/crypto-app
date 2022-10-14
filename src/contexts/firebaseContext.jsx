@@ -18,17 +18,17 @@ export function FirebaseProvider({ children }) {
 
   let navigate = useNavigate();
 
-  const handleSignInWithEmail = () => {
+  const handleCreateUserWithEmail = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        if (user) {
+          navigate("/overview");
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-      })
-      .then(() => {
-        navigate("/overview");
       });
   };
 
@@ -38,15 +38,15 @@ export function FirebaseProvider({ children }) {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
+        if (user) {
+          navigate("/overview");
+        }
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.customData.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
-      })
-      .then(() => {
-        navigate("/overview");
       });
   };
 
@@ -57,7 +57,7 @@ export function FirebaseProvider({ children }) {
         setEmail,
         password,
         setPassword,
-        handleSignInWithEmail,
+        handleCreateUserWithEmail,
         handleSignInWithGoogle,
       }}
     >

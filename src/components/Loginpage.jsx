@@ -10,7 +10,7 @@ const Loginpage = () => {
     setEmail,
     password,
     setPassword,
-    handleSignInWithEmail,
+    handleCreateUserWithEmail,
     handleSignInWithGoogle,
   } = useContext(FirebaseContext);
 
@@ -225,7 +225,7 @@ const Loginpage = () => {
           <button onClick={() => setLogin(false)}>Sign In</button>
         </div>
         {isLogin ? <Login /> : <Register />}
-        <h1>Countinue without login</h1>
+        <h1 className={styles.withoutlogin}>Continue without login</h1>
       </div>
     </div>
   );

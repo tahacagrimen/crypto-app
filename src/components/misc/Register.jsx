@@ -8,16 +8,15 @@ const Register = () => {
     setEmail,
     password,
     setPassword,
-    handleSignInWithEmail,
+    handleCreateUserWithEmail,
     handleSignInWithGoogle,
   } = useContext(FirebaseContext);
 
   return (
-    <div>
-      {" "}
+    <>
       <div className={styles.google}>
         <button onClick={() => handleSignInWithGoogle()}>
-          Sign In With Google
+          Sign In with Google
         </button>
       </div>
       <div className={styles.emailsign}>
@@ -29,15 +28,18 @@ const Register = () => {
         />
         <h1>Password</h1>
         <input
-          type="text"
+          type="password"
           placeholder="Enter your password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={() => handleSignInWithEmail()}>
+        <button
+          className={styles.signbutton}
+          onClick={() => handleCreateUserWithEmail()}
+        >
           Sign In With Email
         </button>
       </div>
-    </div>
+    </>
   );
 };
 
