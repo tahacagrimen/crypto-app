@@ -7,6 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const FirebaseContext = createContext();
 
@@ -14,6 +15,8 @@ export function FirebaseProvider({ children }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const provider = new GoogleAuthProvider();
+
+  let navigate = useNavigate();
 
   const handleSignInWithEmail = () => {
     createUserWithEmailAndPassword(auth, email, password)
@@ -23,6 +26,9 @@ export function FirebaseProvider({ children }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+      })
+      .then(() => {
+        navigate("/overview");
       });
   };
 
@@ -38,12 +44,22 @@ export function FirebaseProvider({ children }) {
         const errorMessage = error.message;
         const email = error.customData.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
+      })
+      .then(() => {
+        navigate("/overview");
       });
   };
 
   return (
     <FirebaseContext.Provider
-      value={{ email, setEmail, password, setPassword }}
+      value={{
+        email,
+        setEmail,
+        password,
+        setPassword,
+        handleSignInWithEmail,
+        handleSignInWithGoogle,
+      }}
     >
       {children}
     </FirebaseContext.Provider>

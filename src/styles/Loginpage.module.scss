@@ -1,8 +1,194 @@
 @import "./variables.scss";
 @import "./globals.scss";
 
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotatecenter {
+  0% {
+    transform: rotate(0deg) translate(-175px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(-175px) rotate(-360deg);
+  }
+}
+
+@keyframes rotatecenter2 {
+  0% {
+    transform: rotate(0deg) translate(-225px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(-225px) rotate(-360deg);
+  }
+}
+
+@keyframes rotatecenter3 {
+  0% {
+    transform: rotate(0deg) translate(-125px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(-125px) rotate(-360deg);
+  }
+}
+
 .container {
   min-width: 100%;
   height: auto;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  // animation
+  &__svg {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0.5rem;
+    .svg1 {
+      cursor: pointer;
+      & svg {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    .svg2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: 350px;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #6154f0;
+      border-radius: 50%;
+
+      & svg {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        margin: auto;
+        animation: rotatecenter 6s linear infinite;
+      }
+    }
+
+    .svg3 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: 450px;
+      height: 450px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #1ecb4f;
+      border-radius: 50%;
+
+      & svg {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        margin: auto;
+        animation: rotatecenter2 7s linear infinite;
+      }
+    }
+
+    .svg4 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: 250px;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid #3855ec;
+      border-radius: 50%;
+
+      & svg {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        margin: auto;
+        animation: rotatecenter3 5s linear infinite;
+      }
+    }
+  }
+
+  &__box {
+    background: linear-gradient(
+      112.53deg,
+      rgba(224, 223, 223, 0.5) 4.91%,
+      rgba(255, 255, 255, 0) 135.61%
+    );
+    border: 1px solid #969696;
+    box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    border-radius: 40px;
+    color: black;
+    width: 420px;
+    height: 500px;
+    padding: 1rem 2rem 2rem 2rem;
+    position: absolute;
+    bottom: 1rem;
+    text-align: center;
+    animation: 1s ease-out 0s 1 slideInFromBottom;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    .logo {
+      width: 100%;
+      h1 {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        &::first-letter {
+          font-weight: 700;
+        }
+      }
+    }
+    .google {
+      width: 100%;
+      margin: 1rem 0;
+    }
+  }
 }
