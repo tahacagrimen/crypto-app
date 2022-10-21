@@ -9,10 +9,13 @@ import {
   HiMenuAlt3,
   HiOutlineArrowCircleLeft,
   HiOutlineArrowCircleRight,
+  HiX,
 } from "react-icons/hi";
 
 const Coins = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const [isSearch, setIsSearch] = useState(false);
 
   const {
     page,
@@ -23,10 +26,11 @@ const Coins = () => {
     setCurrency,
     isSidebarOpen,
     setSidebarOpen,
+    setSearchData,
+    searchData,
   } = useContext(CoinContext);
   //
   // fetch with react query
-
   const fetchCoins = async ({ queryKey }) => {
     const response = await fetch(
       `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=${perPage}&page=${queryKey[1]}&sparkline=false`
@@ -45,22 +49,79 @@ const Coins = () => {
   // fetch with react query
   //
 
-  if (status === "loading") {
+  //
+  // search with react query
+  const searchCoins = async ({}) => {
+    if (searchData !== "") {
+      const response = await fetch(
+        `https://api.coingecko.com/api/v3/search?query=${searchData}`
+      );
+      return response.json();
+    } else {
+      return;
+    }
+  };
+
+  const { data: coins, searchstatus } = useQuery(
+    ["searchdata", isSearch],
+    searchCoins
+  );
+  // search with react query
+  //
+
+  if (status === "loading" || searchstatus === "loading") {
     return <div>Loading...</div>;
   }
 
-  if (status === "error") {
+  if (status === "error" || searchstatus === "error") {
     return <div>Error</div>;
   }
-
-  console.log(isSidebarOpen);
 
   return (
     <div className={styles.container}>
       <div className={styles.container__search}>
         <div className={styles.search1}>
-          <input type="text" placeholder="Search coins..." />
-          <HiOutlineSearch />
+          <input
+            onChange={(e) => setSearchData(e.target.value)}
+            type="text"
+            placeholder="Search coins..."
+            value={searchData}
+          />
+          {!isSearch ? (
+            <HiOutlineSearch
+              onClick={() => {
+                if (searchData !== "") {
+                  setIsSearch(true);
+                }
+              }}
+            />
+          ) : (
+            <HiX
+              onClick={() => {
+                setIsSearch(false);
+                setSearchData("");
+              }}
+            />
+          )}
+
+          {/*  */}
+          {/* DROPDOWN MENU */}
+          {coins ? (
+            <div
+              className={`${
+                isSearch ? styles["dropdown--open"] : styles["dropdown--close"]
+              }`}
+            >
+              {coins.coins.slice(0, 5).map((coin) => (
+                <div className={styles.coin} key={coin.id}>
+                  <img src={coin.large} alt="" />
+                  <h1>{coin.name}</h1>
+                </div>
+              ))}
+            </div>
+          ) : null}
+          {/* DROPDOWN MENU */}
+          {/*  */}
         </div>
         <div className={styles.search2}>
           <HiMenuAlt3 onClick={() => setSidebarOpen((prev) => !prev)} />
@@ -121,7 +182,7 @@ const Coins = () => {
           </div>
         </div>
         {data.map((coin) => (
-          <Coin coin={coin} />
+          <Coin key={coin.id} coin={coin} />
         ))}
       </div>
       <div className={styles.pageindicator}>

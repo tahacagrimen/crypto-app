@@ -12,6 +12,8 @@ export function CoinProvider({ children }) {
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
+  const [searchData, setSearchData] = useState("");
+
   return (
     <CoinContext.Provider
       value={{
@@ -23,6 +25,8 @@ export function CoinProvider({ children }) {
         setCurrency,
         isSidebarOpen,
         setSidebarOpen,
+        searchData,
+        setSearchData,
       }}
     >
       {children}

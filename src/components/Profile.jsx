@@ -9,8 +9,6 @@ const Profile = () => {
 
   let navigate = useNavigate();
 
-  console.log(user);
-
   return (
     <>
       {user ? (

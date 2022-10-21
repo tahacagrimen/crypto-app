@@ -11,8 +11,6 @@ import CoinContext from "../contexts/coinContext";
 const Sidebar = () => {
   const { isSidebarOpen, setSidebarOpen } = useContext(CoinContext);
 
-  console.log(isSidebarOpen);
-
   return (
     <div
       className={`${styles.container} ${
