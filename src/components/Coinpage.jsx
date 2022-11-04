@@ -1,9 +1,18 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router-dom";
+import SelectedCoin from "./SelectedCoin";
+import Sidebar from "./Sidebar";
+import styles from "../styles/Coinpage.module.scss";
 
 const Coinpage = () => {
-  return (
-    <div>Coinpage</div>
-  )
-}
+  let { id } = useParams();
 
-export default Coinpage
+  return (
+    <div className={styles.app}>
+      <Sidebar />
+      <SelectedCoin id={id} />
+    </div>
+  );
+};
+
+export default Coinpage;

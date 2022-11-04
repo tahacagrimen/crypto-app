@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CoinContext from "../contexts/coinContext";
 import styles from "../styles/Coin.module.scss";
 
@@ -11,8 +12,14 @@ const Coin = ({ coin }) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
+  let navigate = useNavigate();
+
+  function handleClick() {
+    navigate(`/overview/${coin.id}`);
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onClick={() => handleClick()}>
       <div className={styles.container__start}>
         <div className={styles.image_container}>
           <img className={styles.image} src={coin.image} alt="" />
