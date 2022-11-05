@@ -9,6 +9,7 @@ import {
   HiX,
 } from "react-icons/hi";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const {
@@ -26,6 +27,8 @@ const Search = () => {
 
   const [isSearch, setIsSearch] = useState(false);
 
+  let navigate = useNavigate();
+
   const searchCoins = async ({}) => {
     if (searchData !== "") {
       const response = await fetch(
@@ -41,6 +44,12 @@ const Search = () => {
     ["searchdata", isSearch],
     searchCoins
   );
+
+  const handleClick = (coin) => {
+    setIsSearch(false);
+    setSearchData("");
+    navigate(`/overview/${coin.id}`);
+  };
 
   return (
     <div className={styles.search}>
@@ -77,7 +86,11 @@ const Search = () => {
             }`}
           >
             {coins.coins.slice(0, 5).map((coin) => (
-              <div className={styles.coin} key={coin.id}>
+              <div
+                className={styles.coin}
+                key={coin.id}
+                onClick={() => handleClick(coin)}
+              >
                 <img src={coin.large} alt="" />
                 <h1>{coin.name}</h1>
               </div>
