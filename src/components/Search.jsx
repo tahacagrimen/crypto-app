@@ -40,7 +40,7 @@ const Search = () => {
     }
   };
 
-  const { data: coins, searchstatus } = useQuery(
+  const { data: coins, status } = useQuery(
     ["searchdata", isSearch],
     searchCoins
   );
@@ -50,6 +50,14 @@ const Search = () => {
     setSearchData("");
     navigate(`/overview/${coin.id}`);
   };
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "error") {
+    return <div>Error</div>;
+  }
 
   return (
     <div className={styles.search}>

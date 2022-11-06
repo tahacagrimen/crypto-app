@@ -7,8 +7,6 @@ import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const user = auth.currentUser;
 
-  console.log(user);
-
   let navigate = useNavigate();
 
   return (
@@ -16,7 +14,7 @@ const Profile = () => {
       {user ? (
         <div className={styles.container}>
           <div className={styles.container__img}>
-            <img src={user.photoURL} alt="" />
+            <img referrerPolicy="no-referrer" src={user.photoURL} alt="" />
           </div>
           <div className={styles.container__name}>
             <h1>{user.displayName}</h1>
