@@ -27,6 +27,10 @@ const SelectedCoin = ({ id }) => {
     return <div>Error</div>;
   }
 
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <div className={styles.container}>
       <Search />
@@ -54,7 +58,7 @@ const SelectedCoin = ({ id }) => {
             </h2>
             <div>
               <h1>
-                {coin.market_data.current_price[currency]}{" "}
+                {numberWithCommas(coin.market_data.current_price[currency])}{" "}
                 {currency.toUpperCase()}
               </h1>
               <h2
@@ -77,9 +81,43 @@ const SelectedCoin = ({ id }) => {
           </div>
         </div>
         <div className={styles.row2}>
-          <div className={styles.row2__col1}></div>
-          <div className={styles.row2__col2}></div>
-          <div className={styles.row2__col3}></div>
+          <div className={styles.row2__col1}>
+            <h2>Market Cap</h2>
+            <h1>
+              {numberWithCommas(coin.market_data.market_cap[currency])}{" "}
+              {currency.toUpperCase()}
+            </h1>
+          </div>
+          <div className={styles.row2__col2}>
+            <h2>Circulating Supply</h2>
+            <h1>{numberWithCommas(coin.market_data.circulating_supply)}</h1>
+          </div>
+          <div className={styles.row2__col3}>
+            {" "}
+            <h2>High 24h</h2>
+            <h1>
+              {numberWithCommas(coin.market_data.high_24h[currency])}{" "}
+              {currency.toUpperCase()}
+            </h1>
+            <h2>Low 24h</h2>
+            <h1>
+              {numberWithCommas(coin.market_data.low_24h[currency])}{" "}
+              {currency.toUpperCase()}
+            </h1>
+          </div>
+          <div className={styles.row2__col4}>
+            {" "}
+            <h2>All Time High</h2>
+            <h1>
+              {numberWithCommas(coin.market_data.ath[currency])}{" "}
+              {currency.toUpperCase()}
+            </h1>
+            <h2>All Time Low</h2>
+            <h1>
+              {numberWithCommas(coin.market_data.atl[currency])}{" "}
+              {currency.toUpperCase()}
+            </h1>
+          </div>
         </div>
       </div>
     </div>

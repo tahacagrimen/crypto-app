@@ -133,5 +133,38 @@
         }
       }
     }
+
+    .row2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-top: 2rem;
+      &__col1,
+      &__col2,
+      &__col3,
+      &__col4 {
+        flex: 1;
+        border-left: 1px solid rgb(207, 207, 207);
+        padding: 0.5rem;
+        height: 6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        h2 {
+          font-weight: 600;
+          font-size: 0.8rem;
+          margin-bottom: 0.2rem;
+          text-align: center;
+        }
+        h1 {
+          font-weight: 500;
+          font-size: 0.9rem;
+          text-align: center;
+        }
+      }
+    }
   }
 }

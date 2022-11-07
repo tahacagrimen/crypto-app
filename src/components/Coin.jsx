@@ -9,7 +9,7 @@ const Coin = ({ coin }) => {
   const { market_cap_change_percentage_24h } = coin;
 
   function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
   let navigate = useNavigate();
