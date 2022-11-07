@@ -119,9 +119,14 @@ const SelectedCoin = ({ id }) => {
             </h1>
           </div>
         </div>
+        <div className={styles.row3}>
+          <div className={styles.row3__col1}></div>
+          <div className={styles.row3__col2}></div>
+        </div>
       </div>
     </div>
   );
 };
+s;
 
 export default SelectedCoin;
