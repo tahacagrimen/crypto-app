@@ -110,7 +110,7 @@ const SelectedCoin = ({ id }) => {
             </h2>
             <div>
               <h1>
-                {coin.market_data.current_price[currency] > 0
+                {coin.market_data.current_price[currency] > 1
                   ? numberWithCommas(coin.market_data.current_price[currency])
                   : coin.market_data.current_price[currency]}{" "}
                 {currency.toUpperCase()}
