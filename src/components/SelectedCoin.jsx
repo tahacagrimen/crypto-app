@@ -1,12 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Search from "./Search";
 import styles from "../styles/SelectedCoin.module.scss";
 import { useQuery } from "react-query";
 import CoinContext from "../contexts/coinContext";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Chart } from "react-chartjs-2";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const SelectedCoin = ({ id }) => {
   const { currency } = useContext(CoinContext);
 
+  const [day, setDay] = useState(1);
+
+  const [setting, setSetting] = useState("prices");
+
+  // fetch the selected coin
   const fetchCoin = async () => {
     const response = await fetch(
       `https://api.coingecko.com/api/v3/coins/${id}
@@ -14,16 +40,25 @@ const SelectedCoin = ({ id }) => {
     );
     return response.json();
   };
-
   const { data: coin, status } = useQuery(["coin"], fetchCoin);
+  // fetch the selected coin
 
-  console.log(coin);
+  // feth market chart data
+  const fetchChartData = async () => {
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${day}
+      `
+    );
+    return response.json();
+  };
+  const { data: chart, chartstatus } = useQuery(["chart", day], fetchChartData);
+  // feth market chart data
 
-  if (status === "loading") {
+  if (status === "loading" || chartstatus === "loading") {
     return <div>Loading...</div>;
   }
 
-  if (status === "error") {
+  if (status === "error" || chartstatus === "error") {
     return <div>Error</div>;
   }
 
@@ -120,13 +155,57 @@ const SelectedCoin = ({ id }) => {
           </div>
         </div>
         <div className={styles.row3}>
-          <div className={styles.row3__col1}></div>
+          <div className={styles.row3__col1}>
+            {/* Chart */}
+            {chart ? (
+              <>
+                {" "}
+                <Line
+                  data={{
+                    labels: chart[setting].map((coin) => {
+                      let date = new Date(coin[0]);
+                      let time =
+                        date.getHours() > 12
+                          ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                          : `${date.getHours()}:${date.getMinutes()} AM`;
+
+                      return day === 1 ? time : date.toLocaleDateString();
+                    }),
+                    datasets: [
+                      {
+                        data: chart[setting].map((coin) => coin[1]),
+                        label: `${setting} (${currency.toUpperCase()}) for past ${day} days`,
+                        borderColor: "#DC7DA3",
+                      },
+                    ],
+                  }}
+                />
+                <div>
+                  <div>
+                    <button onClick={() => setSetting("prices")}>Prices</button>
+                    <button onClick={() => setSetting("market_caps")}>
+                      Market Cap
+                    </button>
+                    <button onClick={() => setSetting("total_volumes")}>
+                      Volume
+                    </button>
+                  </div>
+                  <div>
+                    <button onClick={() => setDay(1)}>24h</button>
+                    <button onClick={() => setDay(7)}>7 days</button>
+                    <button onClick={() => setDay(30)}>30 days</button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <h1>Something went wrong</h1>
+            )}
+          </div>
           <div className={styles.row3__col2}></div>
         </div>
       </div>
     </div>
   );
 };
-s;
 
 export default SelectedCoin;
