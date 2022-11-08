@@ -27,7 +27,7 @@ ChartJS.register(
 );
 
 const SelectedCoin = ({ id }) => {
-  const { currency } = useContext(CoinContext);
+  const { currency, isSidebarOpen } = useContext(CoinContext);
 
   const [day, setDay] = useState(1);
 
@@ -80,7 +80,11 @@ const SelectedCoin = ({ id }) => {
   }
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${
+        isSidebarOpen ? styles["containerclose"] : styles["container"]
+      }`}
+    >
       <Search />
       <div className={styles.container__hr}></div>
       <div className={styles.container__info}>

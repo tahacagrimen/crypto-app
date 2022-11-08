@@ -1,6 +1,10 @@
 @import "./variables.scss";
 @import "./globals.scss";
 
+.containerclose {
+  display: none;
+}
+
 .container {
   min-height: 100vh;
   width: 85%;
