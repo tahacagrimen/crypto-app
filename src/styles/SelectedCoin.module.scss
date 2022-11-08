@@ -202,5 +202,61 @@
         }
       }
     }
+
+    .row3 {
+      margin-top: 2rem;
+      width: 70%;
+      padding: 0 0.5rem;
+      @include breakpoint(mediumBP) {
+        width: 100%;
+        height: auto;
+        margin-top: 1rem;
+      }
+      &__col1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .buttons {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 0.5rem;
+          &__1 button {
+            outline: none;
+            padding: 5px;
+            margin-right: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            @include breakpoint(mediumBP) {
+              font-size: 0.8rem;
+              margin-right: 0.2rem;
+            }
+          }
+          &__2 button {
+            outline: none;
+            padding: 5px;
+            margin-left: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            @include breakpoint(mediumBP) {
+              font-size: 0.8rem;
+              margin-right: 0.2rem;
+            }
+          }
+          &__1 .activesetting {
+            background-color: #8455c9;
+            border-radius: 5px;
+            color: white;
+          }
+          &__2 .activeday {
+            background-color: #8455c9;
+            border-radius: 5px;
+            color: white;
+          }
+        }
+      }
+    }
   }
 }

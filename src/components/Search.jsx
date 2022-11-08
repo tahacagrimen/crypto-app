@@ -10,6 +10,7 @@ import {
 } from "react-icons/hi";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { ColorRing } from "react-loader-spinner";
 
 const Search = () => {
   const {
@@ -52,7 +53,20 @@ const Search = () => {
   };
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <ColorRing
+          visible={true}
+          height="30"
+          width="30"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+        />
+        .
+      </div>
+    );
   }
 
   if (status === "error") {

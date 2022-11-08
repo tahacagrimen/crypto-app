@@ -15,6 +15,7 @@ import {
   Legend,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
+import { ColorRing } from "react-loader-spinner";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -40,7 +41,7 @@ const SelectedCoin = ({ id }) => {
     );
     return response.json();
   };
-  const { data: coin, status } = useQuery(["coin"], fetchCoin);
+  const { data: coin, status } = useQuery(["coin", id], fetchCoin);
   // fetch the selected coin
 
   // feth market chart data
@@ -55,7 +56,19 @@ const SelectedCoin = ({ id }) => {
   // feth market chart data
 
   if (status === "loading" || chartstatus === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+        />
+      </div>
+    );
   }
 
   if (status === "error" || chartstatus === "error") {
@@ -159,7 +172,66 @@ const SelectedCoin = ({ id }) => {
             {/* Chart */}
             {chart ? (
               <>
-                {" "}
+                <div className={styles.buttons}>
+                  <div className={styles.buttons__1}>
+                    <button
+                      className={`${
+                        setting === "prices"
+                          ? styles["activesetting"]
+                          : styles["deactivesetting"]
+                      }`}
+                      onClick={() => setSetting("prices")}
+                    >
+                      Prices
+                    </button>
+                    <button
+                      className={`${
+                        setting === "market_caps"
+                          ? styles["activesetting"]
+                          : styles["deactivesetting"]
+                      }`}
+                      onClick={() => setSetting("market_caps")}
+                    >
+                      Market Cap
+                    </button>
+                    <button
+                      className={`${
+                        setting === "total_volumes"
+                          ? styles["activesetting"]
+                          : styles["deactivesetting"]
+                      }`}
+                      onClick={() => setSetting("total_volumes")}
+                    >
+                      Volume
+                    </button>
+                  </div>
+                  <div className={styles.buttons__2}>
+                    <button
+                      className={`${
+                        day === 1 ? styles["activeday"] : styles["deactiveday"]
+                      }`}
+                      onClick={() => setDay(1)}
+                    >
+                      24H
+                    </button>
+                    <button
+                      className={`${
+                        day === 7 ? styles["activeday"] : styles["deactiveday"]
+                      }`}
+                      onClick={() => setDay(7)}
+                    >
+                      7D
+                    </button>
+                    <button
+                      className={`${
+                        day === 30 ? styles["activeday"] : styles["deactiveday"]
+                      }`}
+                      onClick={() => setDay(30)}
+                    >
+                      30D
+                    </button>
+                  </div>
+                </div>
                 <Line
                   data={{
                     labels: chart[setting].map((coin) => {
@@ -176,29 +248,22 @@ const SelectedCoin = ({ id }) => {
                         data: chart[setting].map((coin) => coin[1]),
                         label: `${setting} (${currency.toUpperCase()}) for past ${day} days`,
                         borderColor: "#DC7DA3",
+                        pointRadius: 1,
                       },
                     ],
                   }}
                 />
-                <div>
-                  <div>
-                    <button onClick={() => setSetting("prices")}>Prices</button>
-                    <button onClick={() => setSetting("market_caps")}>
-                      Market Cap
-                    </button>
-                    <button onClick={() => setSetting("total_volumes")}>
-                      Volume
-                    </button>
-                  </div>
-                  <div>
-                    <button onClick={() => setDay(1)}>24h</button>
-                    <button onClick={() => setDay(7)}>7 days</button>
-                    <button onClick={() => setDay(30)}>30 days</button>
-                  </div>
-                </div>
               </>
             ) : (
-              <h1>Something went wrong</h1>
+              <ColorRing
+                visible={true}
+                height="80"
+                width="80"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+              />
             )}
           </div>
           <div className={styles.row3__col2}></div>

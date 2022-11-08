@@ -20,6 +20,7 @@
     input {
       outline: none;
       font-size: 14px;
+      width: 100%;
     }
     svg {
       cursor: pointer;
@@ -53,7 +54,7 @@
         cursor: pointer;
         &:hover {
           background-color: rgba(124, 124, 124, 0.5);
-          transform: scale(1.1);
+          transform: scale(1.03);
           transition: all 0.5s;
           box-shadow: rgba(0, 0, 0, 0.3) 1.95px 1.95px 2.6px;
           img {

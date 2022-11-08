@@ -12,6 +12,7 @@ import {
   HiX,
 } from "react-icons/hi";
 import Search from "./Search";
+import { ColorRing } from "react-loader-spinner";
 
 const Coins = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
@@ -57,7 +58,19 @@ const Coins = () => {
   //
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <ColorRing
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+        />
+      </div>
+    );
   }
 
   if (status === "error") {
