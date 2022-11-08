@@ -23,12 +23,14 @@ const Sidebar = () => {
   const handleNavigateOverview = () => {
     if (pathname !== "/overview") {
       navigate("/overview");
+      setSidebarOpen(false);
     }
   };
 
   const handleNavigatePortfolio = () => {
     if (pathname !== "/portfolio") {
       navigate("/portfolio");
+      setSidebarOpen(false);
     }
   };
 

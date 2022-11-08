@@ -78,7 +78,11 @@ const Coins = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div
+      className={`${
+        isSidebarOpen ? styles["containerclose"] : styles["container"]
+      }`}
+    >
       <Search />
       <div className={styles.container__hr}></div>
       <div className={styles.container__coins}>

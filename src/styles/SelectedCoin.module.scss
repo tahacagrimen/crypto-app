@@ -142,7 +142,10 @@
       width: 100%;
       margin-top: 2rem;
       @include breakpoint(mediumBP) {
-        flex-direction: column;
+        flex-direction: row;
+        width: 100%;
+        padding-bottom: 1rem;
+        margin-top: 0;
       }
       &__col1 {
         flex: 1;
@@ -153,10 +156,10 @@
         justify-content: center;
         flex-direction: column;
         @include breakpoint(mediumBP) {
-          width: 100%;
+          width: 50%;
           border-left: none;
-          border-top: 1px solid rgb(207, 207, 207);
-          padding: 1rem;
+          padding: 0.5rem;
+          flex: none;
         }
         h2 {
           font-weight: 600;
@@ -183,10 +186,10 @@
         justify-content: center;
         flex-direction: column;
         @include breakpoint(mediumBP) {
-          width: 100%;
+          width: 50%;
           border-left: none;
-          border-top: 1px solid rgb(207, 207, 207);
-          padding: 1rem;
+          padding: 0.5rem;
+          flex: none;
         }
         h2 {
           font-weight: 600;
