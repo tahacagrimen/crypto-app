@@ -6,6 +6,7 @@ import Mainpage from "./components/Mainpage";
 import { Routes, Route } from "react-router-dom";
 import Loginpage from "./components/Loginpage";
 import Coinpage from "./components/Coinpage";
+import Portfoliopage from "./components/Portfoliopage";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ function App() {
               <Route exact path="/" element={<Loginpage />} />
               <Route path="/overview" element={<Mainpage />} />
               <Route path="/overview/:id" element={<Coinpage />} />
+              <Route path="/portfolio" element={<Portfoliopage />} />
             </Routes>
           </QueryClientProvider>
         </CoinProvider>

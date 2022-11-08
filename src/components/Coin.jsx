@@ -53,7 +53,8 @@ const Coin = ({ coin }) => {
         <div className={styles.last__price}>
           <h3>Price</h3>
           <h5>
-            {coin.current_price.toFixed(2)} {currency.toUpperCase()}
+            {numberWithCommas(coin.current_price.toFixed(2))}{" "}
+            {currency.toUpperCase()}
           </h5>
         </div>
       </div>
