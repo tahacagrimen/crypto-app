@@ -7,9 +7,12 @@ import { BsWallet2 } from "react-icons/bs";
 import { FaThList } from "react-icons/fa";
 import { useState, useContext } from "react";
 import CoinContext from "../contexts/coinContext";
+import FirebaseContext from "../contexts/firebaseContext";
 
 const Sidebar = () => {
   const { isSidebarOpen, setSidebarOpen } = useContext(CoinContext);
+
+  const { handleLogout } = useContext(FirebaseContext);
 
   return (
     <div
@@ -46,7 +49,7 @@ const Sidebar = () => {
           <h3>My Portfolio</h3>
         </div>
       </div>
-      <div className={styles.menu__logout}>
+      <div className={styles.menu__logout} onClick={() => handleLogout()}>
         <BiLogOut className={styles.icon} />
         <h3>Logout</h3>
       </div>
