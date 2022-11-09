@@ -18,8 +18,6 @@ const Coin = ({ coin }) => {
     navigate(`/overview/${coin.id}`);
   }
 
-  console.log(coin);
-
   return (
     <div className={styles.container} onClick={() => handleClick()}>
       <div className={styles.container__start}>

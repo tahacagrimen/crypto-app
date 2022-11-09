@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState, useContext, useEffect } from "react";
 import { useQuery } from "react-query";
 import CoinContext from "../contexts/coinContext";
@@ -42,7 +42,7 @@ const Coins = () => {
   };
 
   const { data, status, isPreviousData } = useQuery(
-    ["coins", page, currency],
+    ["coins", page, currency, perPage],
     fetchCoins,
     {
       keepPreviousData: true,
@@ -56,6 +56,14 @@ const Coins = () => {
 
   // search with react query
   //
+
+  useEffect(() => {
+    window.addEventListener("scroll", function () {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        setPerPage((prev) => prev + 20);
+      }
+    });
+  }, []);
 
   if (status === "loading") {
     return (
@@ -142,17 +150,19 @@ const Coins = () => {
           <Coin key={coin.id} coin={coin} />
         ))}
       </div>
+
       <div className={styles.pageindicator}>
-        <button
-          disabled={page === 1}
-          onClick={() => setPage((prev) => prev - 1)}
-        >
-          <HiOutlineArrowCircleLeft />
-        </button>
-        <h1>{page}</h1>
-        <button onClick={() => setPage((prev) => prev + 1)}>
-          <HiOutlineArrowCircleRight />
-        </button>
+        {status === "loading" ? (
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+        ) : null}
       </div>
     </div>
   );
