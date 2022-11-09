@@ -6,7 +6,7 @@ import styles from "../styles/Coin.module.scss";
 const Coin = ({ coin }) => {
   const { currency } = useContext(CoinContext);
 
-  const { market_cap_change_percentage_24h } = coin;
+  const { price_change_24h, price_change_percentage_24h } = coin;
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -17,6 +17,8 @@ const Coin = ({ coin }) => {
   function handleClick() {
     navigate(`/overview/${coin.id}`);
   }
+
+  console.log(coin);
 
   return (
     <div className={styles.container} onClick={() => handleClick()}>
@@ -32,16 +34,28 @@ const Coin = ({ coin }) => {
         </div>
       </div>
       <div className={styles.last}>
-        <div className={styles.last__change24}>
-          <h3>Change 24h</h3>
+        <div className={styles.last__change24p}>
+          <h3>Price Change 24h</h3>
           <h5
             className={`${styles.percentage} ${
-              market_cap_change_percentage_24h > 0
+              price_change_24h > 0
                 ? styles["percentage--positive"]
                 : styles["percentage--negative"]
             } `}
           >
-            {market_cap_change_percentage_24h.toFixed(2)}%
+            {price_change_24h.toFixed(2)} {currency.toUpperCase()}
+          </h5>
+        </div>
+        <div className={styles.last__change24}>
+          <h3>Change 24h</h3>
+          <h5
+            className={`${styles.percentage} ${
+              price_change_percentage_24h > 0
+                ? styles["percentage--positive"]
+                : styles["percentage--negative"]
+            } `}
+          >
+            {price_change_percentage_24h.toFixed(2)}%
           </h5>
         </div>
         <div className={styles.last__marketcap}>

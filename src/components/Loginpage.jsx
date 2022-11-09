@@ -13,9 +13,15 @@ const Loginpage = () => {
     setPassword,
     handleCreateUserWithEmail,
     handleSignInWithGoogle,
+    auth,
   } = useContext(FirebaseContext);
 
   let navigate = useNavigate();
+
+  if (email) {
+    console.log(email);
+    navigate("/overview");
+  }
 
   const [isLogin, setLogin] = useState(true);
 

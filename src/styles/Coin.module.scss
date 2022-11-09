@@ -105,6 +105,35 @@
     }
   }
 
+  &__change24p {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    width: 7rem;
+    margin-right: 1rem;
+    @include breakpointSM(smallBP) {
+      display: none;
+    }
+
+    h3 {
+      font-size: 12px;
+      color: #9e9e9e;
+    }
+
+    .percentage {
+      font-size: 14px;
+      font-weight: 500;
+
+      &--positive {
+        color: #1ecb4f;
+      }
+      &--negative {
+        color: #ff8d4d;
+      }
+    }
+  }
+
   &__marketcap {
     display: flex;
     align-items: flex-end;
@@ -113,6 +142,9 @@
     width: 11rem;
     margin-right: 1rem;
     @include breakpoint(mediumBP) {
+      display: none;
+    }
+    @include breakpointLG(largeBP) {
       display: none;
     }
 

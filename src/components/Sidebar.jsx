@@ -100,9 +100,25 @@ const Sidebar = () => {
           className={styles.menu__portfolio}
           onClick={() => handleNavigatePortfolio()}
         >
-          <BsWallet2 className={styles.icon} />
-          <h3>My Portfolio</h3>
-          <GoPrimitiveDot className={styles.icon2} />
+          <BsWallet2
+            className={`${
+              pathname === "/portfolio" ? styles["activeicon"] : styles["icon"]
+            }`}
+          />
+          <h3
+            className={`${
+              pathname === "/portfolio" ? styles["activeh3"] : styles["h3"]
+            }`}
+          >
+            My Portfolio
+          </h3>
+          <GoPrimitiveDot
+            className={`${
+              pathname === "/portfolio"
+                ? styles["activeicon2"]
+                : styles["icon2"]
+            }`}
+          />
         </div>
       </div>
       <div className={styles.menu__logout} onClick={() => handleLogout()}>
