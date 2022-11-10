@@ -42,7 +42,7 @@ const Coins = () => {
   };
 
   const { data, status, isPreviousData } = useQuery(
-    ["coins", page, currency, perPage],
+    ["coins", currency, perPage],
     fetchCoins,
     {
       keepPreviousData: true,

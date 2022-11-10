@@ -12,6 +12,7 @@
   top: 0;
   left: 0;
   padding: 1rem;
+  padding-right: 2rem;
   @include breakpoint(mediumBP) {
     padding: 0.5rem;
   }
@@ -148,7 +149,6 @@
       @include breakpoint(mediumBP) {
         flex-direction: row;
         width: 100%;
-        padding-bottom: 1rem;
         margin-top: 0.5rem;
       }
       &__col1 {
@@ -218,19 +218,19 @@
     }
 
     .row3 {
-      margin-top: 2rem;
-      width: 70%;
+      margin-top: 1rem;
+      width: 100%;
       padding: 0 0.5rem;
-      @include breakpoint(mediumBP) {
-        width: 100%;
-        height: auto;
-        margin-top: 1rem;
-      }
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: column-reverse;
       &__col1 {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        width: 100%;
         .buttons {
           display: flex;
           align-items: center;
@@ -268,6 +268,75 @@
             background-color: #8455c9;
             border-radius: 5px;
             color: white;
+          }
+        }
+      }
+      //
+      //
+      &__col2 {
+        width: 100%;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        .add {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+          border-radius: 10px;
+          background-color: #fdfdfd;
+          padding: 1rem;
+          &__heading {
+            color: white;
+            font-weight: 500;
+            background-color: #6154f0;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+              rgba(0, 0, 0, 0.24) 0px 1px 2px;
+            cursor: pointer;
+            &:active {
+              box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px,
+                rgba(0, 0, 0, 0.5) 0px 1px 5px;
+              background-color: #5648f4;
+            }
+          }
+
+          .adding {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: row;
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              appearance: none;
+            }
+            input {
+              width: 10rem;
+              padding: 8px;
+              border: 1px solid lightgray;
+              border-radius: 5px;
+              margin: 0 0.5rem;
+              background-color: white;
+              &:focus {
+                border: 1px solid orange;
+              }
+            }
+            h2 {
+              text-align: center;
+              margin-bottom: 0.3rem;
+              font-size: 0.9rem;
+              font-weight: 500;
+            }
+            &__amount,
+            &__price {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              margin: 0 0.5rem;
+            }
           }
         }
       }

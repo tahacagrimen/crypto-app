@@ -16,6 +16,7 @@ import {
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
 import { ColorRing } from "react-loader-spinner";
+import AddToPort from "./misc/AddToPort";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -272,7 +273,9 @@ const SelectedCoin = ({ id }) => {
               />
             )}
           </div>
-          <div className={styles.row3__col2}></div>
+          <div className={styles.row3__col2}>
+            <AddToPort coin={coin} />
+          </div>
         </div>
       </div>
     </div>
