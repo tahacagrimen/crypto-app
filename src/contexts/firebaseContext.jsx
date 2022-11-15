@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { addDoc, doc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 const FirebaseContext = createContext();
 
@@ -71,9 +71,11 @@ export function FirebaseProvider({ children }) {
       });
   };
 
-  const handleSetDoc = async (userUid, coin, price, amount) => {
-    await addDoc(doc(db, userUid, coin), {
-      Timestamp: { buying_price: price, buying_amount: amount },
+  const handleSetDoc = async (userUid, coin, price, amount, time) => {
+    await setDoc(doc(db, userUid, time), {
+      coin_name: coin,
+      buying_price: price,
+      buying_amount: amount,
     });
   };
 
