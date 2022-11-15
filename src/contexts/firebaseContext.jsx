@@ -7,8 +7,9 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { addDoc, doc, setDoc, Timestamp } from "firebase/firestore";
 
 const FirebaseContext = createContext();
 
@@ -70,6 +71,12 @@ export function FirebaseProvider({ children }) {
       });
   };
 
+  const handleSetDoc = async (userUid, coin, price, amount) => {
+    await addDoc(doc(db, userUid, coin), {
+      Timestamp: { buying_price: price, buying_amount: amount },
+    });
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -86,6 +93,7 @@ export function FirebaseProvider({ children }) {
         setPic,
         pic,
         handleLogout,
+        handleSetDoc,
       }}
     >
       {children}
