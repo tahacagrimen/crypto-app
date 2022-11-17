@@ -1,0 +1,33 @@
+@import "./variables.scss";
+@import "./globals.scss";
+
+.containerclose {
+  display: none;
+}
+
+.container {
+  min-height: 100vh;
+  width: 85%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  padding-right: 2rem;
+  @include breakpoint(mediumBP) {
+    padding: 0.5rem;
+  }
+  @include breakpoint(mediumBP) {
+    width: 100%;
+    height: auto;
+  }
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  &__hr {
+    width: 100%;
+    border: 1px solid #e4e4e4;
+    margin: 1rem 0;
+  }
+}

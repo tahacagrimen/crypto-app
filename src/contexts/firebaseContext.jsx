@@ -71,9 +71,21 @@ export function FirebaseProvider({ children }) {
       });
   };
 
-  const handleSetDoc = async (userUid, coin, price, amount, time) => {
-    await setDoc(doc(db, userUid, time), {
-      coin_name: coin,
+  const handleSetDoc = async (
+    userUid,
+    coin,
+    coinid,
+    price,
+    amount,
+    time,
+    isbuy
+  ) => {
+    await setDoc(doc(db, userUid, coinid), {
+      timestamp: time,
+      is_buy: isbuy,
+      coin_name: coin.name,
+      coin_id: coin.id,
+      coin_symbol: coin.symbol.toUpperCase(),
       buying_price: price,
       buying_amount: amount,
     });

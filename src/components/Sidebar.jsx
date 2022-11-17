@@ -14,7 +14,7 @@ import { GoPrimitiveDot } from "react-icons/go";
 const Sidebar = () => {
   const { isSidebarOpen, setSidebarOpen } = useContext(CoinContext);
 
-  const { handleLogout } = useContext(FirebaseContext);
+  const { handleLogout, uid } = useContext(FirebaseContext);
 
   const { pathname } = useLocation();
 
@@ -96,30 +96,34 @@ const Sidebar = () => {
             }`}
           />
         </div>
-        <div
-          className={styles.menu__portfolio}
-          onClick={() => handleNavigatePortfolio()}
-        >
-          <BsWallet2
-            className={`${
-              pathname === "/portfolio" ? styles["activeicon"] : styles["icon"]
-            }`}
-          />
-          <h3
-            className={`${
-              pathname === "/portfolio" ? styles["activeh3"] : styles["h3"]
-            }`}
+        {uid ? (
+          <div
+            className={styles.menu__portfolio}
+            onClick={() => handleNavigatePortfolio()}
           >
-            My Portfolio
-          </h3>
-          <GoPrimitiveDot
-            className={`${
-              pathname === "/portfolio"
-                ? styles["activeicon2"]
-                : styles["icon2"]
-            }`}
-          />
-        </div>
+            <BsWallet2
+              className={`${
+                pathname === "/portfolio"
+                  ? styles["activeicon"]
+                  : styles["icon"]
+              }`}
+            />
+            <h3
+              className={`${
+                pathname === "/portfolio" ? styles["activeh3"] : styles["h3"]
+              }`}
+            >
+              My Portfolio
+            </h3>
+            <GoPrimitiveDot
+              className={`${
+                pathname === "/portfolio"
+                  ? styles["activeicon2"]
+                  : styles["icon2"]
+              }`}
+            />
+          </div>
+        ) : null}
       </div>
       <div className={styles.menu__logout} onClick={() => handleLogout()}>
         <BiLogOut className={styles.icon} />
