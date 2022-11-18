@@ -43,7 +43,7 @@ const AddToPort = ({ coin }) => {
           handleSetDoc(
             uid,
             coin,
-            coin.coin_id,
+            coin.id,
             buyingprice,
             buyingamount,
             time,

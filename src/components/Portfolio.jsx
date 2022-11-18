@@ -7,8 +7,16 @@ import Search from "./Search";
 import { db } from "../firebase";
 
 const Portfolio = () => {
-  const { currency, isSidebarOpen, myCoins, setMyCoins, notes, setNotes } =
-    useContext(CoinContext);
+  const {
+    currency,
+    isSidebarOpen,
+    myCoins,
+    setMyCoins,
+    notes,
+    setNotes,
+    portCoins,
+    setPortCoins,
+  } = useContext(CoinContext);
   const { handleSetDoc, uid } = useContext(FirebaseContext);
 
   useEffect(() => {
@@ -16,7 +24,9 @@ const Portfolio = () => {
       const colRef = collection(db, uid);
       const q = query(colRef);
       onSnapshot(q, (snapshot) => {
-        console.log(snapshot.docs.map((doc) => doc.data()));
+        console.log(myCoins);
+        console.log(portCoins);
+        setPortCoins(snapshot.docs.map((doc) => doc.id));
         setMyCoins(snapshot.docs.map((doc) => doc.data()));
       });
     }

@@ -80,15 +80,21 @@ export function FirebaseProvider({ children }) {
     time,
     isbuy
   ) => {
-    await setDoc(doc(db, userUid, coinid), {
-      timestamp: time,
-      is_buy: isbuy,
-      coin_name: coin.name,
-      coin_id: coin.id,
-      coin_symbol: coin.symbol.toUpperCase(),
-      buying_price: price,
-      buying_amount: amount,
-    });
+    const coinRef = doc(db, userUid, coinid);
+
+    const coinData = {
+      [time]: {
+        is_buy: isbuy,
+        coin_name: coin.name,
+        coin_id: coin.id,
+        coin_symbol: coin.symbol.toUpperCase(),
+        buying_price: price,
+        buying_amount: amount,
+        timestamp: time,
+      },
+    };
+
+    await setDoc(coinRef, coinData, { merge: true });
   };
 
   return (

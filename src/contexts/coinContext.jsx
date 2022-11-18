@@ -18,6 +18,8 @@ export function CoinProvider({ children }) {
 
   const [notes, setNotes] = useState([]);
 
+  const [portCoins, setPortCoins] = useState([]);
+
   return (
     <CoinContext.Provider
       value={{
@@ -35,6 +37,8 @@ export function CoinProvider({ children }) {
         setMyCoins,
         notes,
         setNotes,
+        portCoins,
+        setPortCoins,
       }}
     >
       {children}
