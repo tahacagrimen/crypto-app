@@ -5,6 +5,7 @@ import FirebaseContext from "../contexts/firebaseContext";
 import styles from "../styles/Portfolio.module.scss";
 import Search from "./Search";
 import { db } from "../firebase";
+import MyCoin from "./MyCoin";
 
 const Portfolio = () => {
   const {
@@ -24,11 +25,13 @@ const Portfolio = () => {
       const colRef = collection(db, uid);
       const q = query(colRef);
       onSnapshot(q, (snapshot) => {
-        console.log(myCoins);
-        console.log(portCoins);
         setPortCoins(snapshot.docs.map((doc) => doc.id));
         setMyCoins(snapshot.docs.map((doc) => doc.data()));
+        console.log(myCoins);
+        console.log(portCoins);
       });
+    } else {
+      return;
     }
   }, [uid]);
 
@@ -40,6 +43,9 @@ const Portfolio = () => {
     >
       <Search />
       <div className={styles.container__hr}></div>
+      {myCoins.map((coin) => (
+        <MyCoin id={coin.id} data={coin.data()} key={coin.id} />
+      ))}
     </div>
   );
 };
