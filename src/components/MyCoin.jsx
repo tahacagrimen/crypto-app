@@ -37,36 +37,43 @@ const MyCoin = ({ id, data }) => {
 
   useEffect(() => {
     handleData();
+  }, []);
+
+  useEffect(() => {
     handleCoin();
-  }, [data]);
+  }, [coins]);
 
   return (
-    <div className={styles.container} onClick={() => handleClick()}>
-      <div className={styles.container__start}>
-        <div className={styles.image_container}>
-          {/* <img className={styles.image} src={data.image} alt="" /> */}
+    <>
+      {amount !== 0 ? (
+        <div className={styles.container} onClick={() => handleClick()}>
+          <div className={styles.container__start}>
+            <div className={styles.image_container}>
+              {/* <img className={styles.image} src={data.image} alt="" /> */}
+            </div>
+            <div className={styles.container__start__name}>
+              <h3>{data.coin_name}</h3>
+              <h5>{data.coin_symbol}/USD</h5>
+            </div>
+          </div>
+          <div className={styles.last}>
+            <div className={styles.last__change24p}>
+              <h3>Amount</h3>
+              <h1>{amount}</h1>
+            </div>
+            <div className={styles.last__change24}>
+              <h3>Avarage Buying Price</h3>
+            </div>
+            <div className={styles.last__marketcap}>
+              <h3>Current Price</h3>
+            </div>
+            <div className={styles.last__price}>
+              <h3>Change</h3>
+            </div>
+          </div>
         </div>
-        <div className={styles.container__start__name}>
-          <h3>{data.coin_name}</h3>
-          <h5>{data.coin_symbol}/USD</h5>
-        </div>
-      </div>
-      <div className={styles.last}>
-        <div className={styles.last__change24p}>
-          <h3>Amount</h3>
-          <h1>{amount}</h1>
-        </div>
-        <div className={styles.last__change24}>
-          <h3>Avarage Buying Price</h3>
-        </div>
-        <div className={styles.last__marketcap}>
-          <h3>Current Price</h3>
-        </div>
-        <div className={styles.last__price}>
-          <h3>Change</h3>
-        </div>
-      </div>
-    </div>
+      ) : null}
+    </>
   );
 };
 

@@ -26,9 +26,7 @@ const Portfolio = () => {
       const q = query(colRef);
       onSnapshot(q, (snapshot) => {
         setPortCoins(snapshot.docs.map((doc) => doc.id));
-        setMyCoins(snapshot.docs.map((doc) => doc.data()));
-        console.log(myCoins);
-        console.log(portCoins);
+        setMyCoins(snapshot.docs.map((doc) => doc));
       });
     } else {
       return;
