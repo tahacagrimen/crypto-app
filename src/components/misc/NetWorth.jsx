@@ -4,6 +4,11 @@ import { useState } from "react";
 import { useContext } from "react";
 import { ColorRing } from "react-loader-spinner";
 import CoinContext from "../../contexts/coinContext";
+import styles from "../../styles/Portfolio.module.scss";
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineKeyboardArrowUp,
+} from "react-icons/md";
 
 const NetWorth = () => {
   const { portfolio, apiData, portCoins } = useContext(CoinContext);
@@ -22,9 +27,19 @@ const NetWorth = () => {
         );
         setNetWorth((prev) => prev + Number(coin.amount) * Number(coin.price));
       });
-      setPercentage(Number(netWorth) / Number(invesment));
-      setPercentage(Number(invesment) / Number(netWorth));
     }, 500);
+  };
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const percentageCalculator = (invesment, netWorth) => {
+    if (invesment > netWorth) {
+      return (100 - (100 * netWorth) / invesment).toFixed(1);
+    } else {
+      return (100 - (100 * invesment) / netWorth).toFixed(1);
+    }
   };
 
   useEffect(() => {
@@ -49,16 +64,36 @@ const NetWorth = () => {
   }
 
   return (
-    <div>
-      <div>
+    <div className={styles.networth}>
+      <div className={styles.networth__total}>
         <h2>Total Invesment</h2>
-        <h1>{invesment} USD</h1>
+        <h1>
+          {numberWithCommas(invesment.toFixed(2))}{" "}
+          <span className={styles.usd}>USD</span>
+        </h1>
       </div>
-      <div>
+      <div className={styles.networth__net}>
         <h2>Net Worth</h2>
-        <h1>{netWorth}</h1>
+        <h1>
+          {numberWithCommas(netWorth.toFixed(2))}{" "}
+          <span className={styles.usd}>USD</span>
+          <span
+            className={`${
+              invesment > netWorth
+                ? styles["pernegative"]
+                : styles["perpositive"]
+            }`}
+          >
+            {" "}
+            {invesment > netWorth ? (
+              <MdOutlineKeyboardArrowDown />
+            ) : (
+              <MdOutlineKeyboardArrowUp />
+            )}
+            {percentageCalculator(invesment, netWorth)} %
+          </span>
+        </h1>
       </div>
-      <div>{percentage && <h1>{percentage} %</h1>}</div>
     </div>
   );
 };

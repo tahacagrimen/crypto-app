@@ -16,7 +16,11 @@ function Login() {
     <>
       <div className={styles.google}>
         <button onClick={() => handleSignInWithGoogle()}>
-          Login with Google
+          Login with{" "}
+          <img
+            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-google-sva-scholarship-20.png"
+            alt=""
+          />
         </button>
       </div>
     </>

@@ -3,6 +3,8 @@ import { useState } from "react";
 import CoinContext from "../../contexts/coinContext";
 import FirebaseContext from "../../contexts/firebaseContext";
 import styles from "../../styles/SelectedCoin.module.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddToPort = ({ coin }) => {
   const { currency, isSidebarOpen } = useContext(CoinContext);
@@ -52,6 +54,16 @@ const AddToPort = ({ coin }) => {
               isbuy
             );
             setBuyingAmount(0);
+            toast.success("Your transaction has been successfully completed", {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }}
         >
           <h1>Buy {coin.name}</h1>
@@ -70,11 +82,33 @@ const AddToPort = ({ coin }) => {
               !isbuy
             );
             setBuyingAmount(0);
+            toast.success("Your transaction has been successfully completed", {
+              position: "top-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }}
         >
           <h1>Sell {coin.name}</h1>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </div>
   );
 };

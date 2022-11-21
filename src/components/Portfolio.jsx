@@ -43,7 +43,7 @@ const Portfolio = () => {
     >
       <Search />
       <div className={styles.container__hr}></div>
-      <div>
+      <div className={styles.container__start}>
         <NetWorth />
         <Pie />
       </div>
