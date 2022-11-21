@@ -82,7 +82,24 @@
           }
         }
       }
+      @include breakpointSM(smallBP) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 0;
+        width: 100%;
+        &__total,
+        &__net {
+          h2 {
+            font-size: 14px;
+          }
+          h1 {
+            font-size: 16px;
+          }
+        }
+      }
     }
+
     .pie {
       @include breakpoint(mediumBP) {
         width: 250px;
