@@ -22,6 +22,19 @@ const AddToPort = ({ coin }) => {
   return (
     <div className={styles.add}>
       <div className={styles.adding}>
+        <ToastContainer
+          className={styles.toast}
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
         <div className={styles.adding__amount}>
           <h2>Amount</h2>
           <input
@@ -97,18 +110,6 @@ const AddToPort = ({ coin }) => {
           <h1>Sell {coin.name}</h1>
         </div>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        theme="light"
-      />
     </div>
   );
 };
