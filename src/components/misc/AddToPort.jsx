@@ -17,8 +17,6 @@ const AddToPort = ({ coin }) => {
 
   const [isbuy, setIsBuy] = useState(true);
 
-  console.log(coin);
-
   return (
     <div className={styles.add}>
       <div className={styles.adding}>
@@ -26,7 +24,7 @@ const AddToPort = ({ coin }) => {
           <h2>Amount</h2>
           <input
             onChange={(e) => setBuyingAmount(e.target.value)}
-            defaultValue={0}
+            value={buyingamount}
             type="number"
           />
         </div>
@@ -39,22 +37,43 @@ const AddToPort = ({ coin }) => {
           />
         </div>
       </div>
-      <div
-        className={styles.add__heading}
-        onClick={() =>
-          handleSetDoc(
-            uid,
-            coin,
-            coin.id,
-            coin.image.large,
-            buyingprice,
-            buyingamount,
-            time,
-            isbuy
-          )
-        }
-      >
-        <h1>Add {coin.name} to your Portfolio</h1>
+      <div className={styles.add__header}>
+        <div
+          className={styles.add__heading}
+          onClick={() => {
+            handleSetDoc(
+              uid,
+              coin,
+              coin.id,
+              coin.image.large,
+              buyingprice,
+              buyingamount,
+              time,
+              isbuy
+            );
+            setBuyingAmount(0);
+          }}
+        >
+          <h1>Buy {coin.name}</h1>
+        </div>
+        <div
+          className={styles.add__heading2}
+          onClick={() => {
+            handleSetDoc(
+              uid,
+              coin,
+              coin.id,
+              coin.image.large,
+              buyingprice,
+              buyingamount,
+              time,
+              !isbuy
+            );
+            setBuyingAmount(0);
+          }}
+        >
+          <h1>Sell {coin.name}</h1>
+        </div>
       </div>
     </div>
   );
