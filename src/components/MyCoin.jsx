@@ -66,11 +66,6 @@ const MyCoin = ({ id, data }) => {
   useEffect(() => {
     if (apiData) {
       handleApiData();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (apiData) {
       let obj = {
         id: id,
         amount: amount,
@@ -84,7 +79,24 @@ const MyCoin = ({ id, data }) => {
         portfolio[find] = obj;
       }
     }
-  }, [amount, average, price, id]);
+  }, [amount, average, price, change]);
+
+  // useEffect(() => {
+  //   if (apiData) {
+  //     let obj = {
+  //       id: id,
+  //       amount: amount,
+  //       average: average,
+  //       price: price,
+  //     };
+  //     let find = portfolio.findIndex((element) => element.id === id);
+  //     if (find === -1) {
+  //       setPortfolio((prev) => [...prev, obj]);
+  //     } else {
+  //       portfolio[find] = obj;
+  //     }
+  //   }
+  // }, [amount, average, price, change]);
 
   return (
     <>

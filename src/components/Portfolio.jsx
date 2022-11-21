@@ -6,6 +6,8 @@ import styles from "../styles/Portfolio.module.scss";
 import Search from "./Search";
 import { db } from "../firebase";
 import MyCoin from "./MyCoin";
+import NetWorth from "./misc/NetWorth";
+import Pie from "./misc/Pie";
 
 const Portfolio = () => {
   const {
@@ -41,6 +43,10 @@ const Portfolio = () => {
     >
       <Search />
       <div className={styles.container__hr}></div>
+      <div>
+        <NetWorth />
+        <Pie />
+      </div>
       {myCoins.map((coin) => (
         <MyCoin id={coin.id} data={coin.data()} key={coin.id} />
       ))}
