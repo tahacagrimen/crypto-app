@@ -125,10 +125,12 @@ const Sidebar = () => {
           </div>
         ) : null}
       </div>
-      <div className={styles.menu__logout} onClick={() => handleLogout()}>
-        <BiLogOut className={styles.icon} />
-        <h3>Logout</h3>
-      </div>
+      {uid ? (
+        <div className={styles.menu__logout} onClick={() => handleLogout()}>
+          <BiLogOut className={styles.icon} />
+          <h3>Logout</h3>
+        </div>
+      ) : null}
     </div>
   );
 };

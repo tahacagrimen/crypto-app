@@ -22,6 +22,8 @@ export function CoinProvider({ children }) {
 
   const [apiData, setApiData] = useState();
 
+  const [portfolio, setPortfolio] = useState([]);
+
   return (
     <CoinContext.Provider
       value={{
@@ -43,6 +45,8 @@ export function CoinProvider({ children }) {
         setPortCoins,
         apiData,
         setApiData,
+        portfolio,
+        setPortfolio,
       }}
     >
       {children}

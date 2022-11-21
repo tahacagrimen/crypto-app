@@ -18,7 +18,7 @@ const MyCoin = ({ id, data }) => {
 
   const { uid } = useContext(FirebaseContext);
 
-  const { apiData } = useContext(CoinContext);
+  const { apiData, portfolio, setPortfolio } = useContext(CoinContext);
 
   let navigate = useNavigate();
 
@@ -68,6 +68,23 @@ const MyCoin = ({ id, data }) => {
       handleApiData();
     }
   }, []);
+
+  useEffect(() => {
+    if (apiData) {
+      let obj = {
+        id: id,
+        amount: amount,
+        average: average,
+        price: price,
+      };
+      let find = portfolio.findIndex((element) => element.id === id);
+      if (find === -1) {
+        setPortfolio((prev) => [...prev, obj]);
+      } else {
+        portfolio[find] = obj;
+      }
+    }
+  }, [amount, average, price, id]);
 
   return (
     <>
