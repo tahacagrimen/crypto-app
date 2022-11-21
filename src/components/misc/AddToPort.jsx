@@ -17,6 +17,8 @@ const AddToPort = ({ coin }) => {
 
   const [isbuy, setIsBuy] = useState(true);
 
+  console.log(coin);
+
   return (
     <div className={styles.add}>
       <div className={styles.adding}>
@@ -44,6 +46,7 @@ const AddToPort = ({ coin }) => {
             uid,
             coin,
             coin.id,
+            coin.image.large,
             buyingprice,
             buyingamount,
             time,

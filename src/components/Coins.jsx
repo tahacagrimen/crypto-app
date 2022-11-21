@@ -30,12 +30,14 @@ const Coins = () => {
     setSidebarOpen,
     setSearchData,
     searchData,
+    apiData,
+    setApiData,
   } = useContext(CoinContext);
   //
   // fetch with react query
   const fetchCoins = async ({ queryKey }) => {
     const response = await fetch(
-      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=${perPage}&page=${queryKey[1]}&sparkline=false`
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&sparkline=false      `
     );
 
     return response.json();
@@ -56,6 +58,10 @@ const Coins = () => {
 
   // search with react query
   //
+
+  useEffect(() => {
+    setApiData(data);
+  }, [data]);
 
   useEffect(() => {
     window.addEventListener("scroll", function () {
@@ -146,7 +152,7 @@ const Coins = () => {
             </div>
           </div>
         </div>
-        {data.map((coin) => (
+        {data.slice(0, perPage).map((coin) => (
           <Coin key={coin.id} coin={coin} />
         ))}
       </div>
