@@ -147,7 +147,7 @@ https://crypto-app-xi.vercel.app/overview
 - Fetching market data
 
 ```
-  // feth market chart data
+  // fetch market chart data
   const fetchChartData = async () => {
     const response = await fetch(
       `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${day}
@@ -156,7 +156,7 @@ https://crypto-app-xi.vercel.app/overview
     return response.json();
   };
   const { data: chart, chartstatus } = useQuery(["chart", day], fetchChartData);
-  // feth market chart data
+  // fetch market chart data
 
 ```
 
