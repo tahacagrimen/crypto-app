@@ -17,15 +17,19 @@ const NetWorth = () => {
 
   const [invesment, setInvesment] = useState(0);
 
-  const [percentage, setPercentage] = useState(0);
-
   const handleTotal = async () => {
     setTimeout(() => {
       portfolio.map((coin) => {
-        setInvesment(
-          (prev) => prev + Number(coin.amount) * Number(coin.average)
-        );
-        setNetWorth((prev) => prev + Number(coin.amount) * Number(coin.price));
+        if (coin.amount !== 0) {
+          setInvesment(
+            (prev) => prev + Number(coin.amount) * Number(coin.average)
+          );
+          setNetWorth(
+            (prev) => prev + Number(coin.amount) * Number(coin.price)
+          );
+        } else {
+          return;
+        }
       });
     }, 500);
   };
@@ -48,8 +52,8 @@ const NetWorth = () => {
 
   if (invesment === 0 || netWorth === 0) {
     return (
-      <div>
-        {" "}
+      <div className={styles.ring}>
+        <h1>You dont have any invesment</h1>
         <ColorRing
           visible={true}
           height="30"

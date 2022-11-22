@@ -19,6 +19,7 @@ const Portfolio = () => {
     setNotes,
     portCoins,
     setPortCoins,
+    portfolio,
   } = useContext(CoinContext);
   const { handleSetDoc, uid } = useContext(FirebaseContext);
 
